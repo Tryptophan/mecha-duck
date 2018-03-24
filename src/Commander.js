@@ -177,11 +177,20 @@ export default class Commander extends Component {
       LEFT: 37,
       RIGHT: 39,
       UP: 38,
-      DOWN: 40
+      DOWN: 40,
+      SPACE: 32
     }
 
     document.onkeydown = event => {
       event.preventDefault();
+
+      if (event.keyCode === KEY.SPACE) {
+        let speed = 0;
+        this.setState({
+          speed: speed
+        });
+        this.socket.emit('speed', speed);
+      }
 
       if (event.keyCode === KEY.W) {
         let speed = this.state.speed + 10;
