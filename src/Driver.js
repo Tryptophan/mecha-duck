@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import map from './map.png';
+import wheel from './wheel.png';
 
 export default class Driver extends Component {
   render() {
@@ -7,8 +7,12 @@ export default class Driver extends Component {
       <div>
         <div className='Map' />
         <div className='Controls'>
-          <div className='Speed' />
-          <div className='Wheel' />
+          <div className='Speed'>
+
+          </div>
+          <div className='Wheel'>
+            <img src={wheel} />
+          </div>
         </div>
       </div>
     );
