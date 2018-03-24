@@ -14,6 +14,21 @@ export default class Commander extends Component {
     }
 
     this.socket = io('http://localhost:8080');
+
+    this.socket.on('connect', () => {
+      this.socket.on('speed', data => {
+        this.setState({
+          speed: data
+        });
+      });
+
+      this.socket.on('angle', data => {
+        console.log(data);
+        this.setState({
+          angle: data
+        });
+      });
+    });
   }
 
   render() {

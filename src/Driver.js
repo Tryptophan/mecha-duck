@@ -15,9 +15,6 @@ export default class Driver extends Component {
     this.socket = io('http://localhost:8080');
 
     this.socket.on('connect', () => {
-
-      this.socket.emit('driver', this.socket.id);
-
       this.socket.on('speed', data => {
         this.setState({
           speed: data
