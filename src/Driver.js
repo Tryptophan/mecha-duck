@@ -6,7 +6,10 @@ export default class Driver extends Component {
     return (
       <div>
         <div className='Map' />
-        <div className='Controls' />
+        <div className='Controls'>
+          <div className='Speed' />
+          <div className='Wheel' />
+        </div>
       </div>
     );
   }

@@ -18,8 +18,28 @@ html, body {
   float: left;
   width: 50%;
   height: 100vh;
-  /* background-color: blue; */
   background-image: url('map.png');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position-x: 0%;
+  background-position-y: 100%;
+}
+
+.Controls {
+  float: right;
+  width: 50%;
+  height: 100vh;
+}
+
+.Speed {
+  height: 50vh;
+  background-color: red;
+}
+
+.Wheel {
+  height: 50vh;
+
+  background-image: url('wheel.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
