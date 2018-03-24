@@ -14,10 +14,12 @@ export default class Driver extends Component {
       dropoffPackage: false,
       forward: true,
       eatLeft: false,
-      eatRight: false
+      eatRight: false,
+      x: 0,
+      y: 100
     }
 
-    this.socket = io('http://localhost:8080');
+    this.socket = io('http://10.42.0.1:8080');
 
     this.socket.on('connect', () => {
       this.socket.on('speed', data => {
@@ -64,6 +66,20 @@ export default class Driver extends Component {
         console.log(data);
         this.setState({
           forward: data
+        });
+      });
+
+      this.socket.on('x', data => {
+        console.log(data);
+        this.setState({
+          x: data
+        });
+      });
+
+      this.socket.on('y', data => {
+        console.log(data);
+        this.setState({
+          y: data
         });
       });
     });
@@ -116,6 +132,11 @@ export default class Driver extends Component {
       }
     }
 
+    const mapStyle = {
+      backgroundPositionX: this.state.x,
+      backgroundPositionY: this.state.y
+    }
+
     return (
       <div>
         {/* <div className='Map'/> */}
@@ -130,20 +151,25 @@ export default class Driver extends Component {
             </div>
           </div>
           <div className='Actions'>
-            <button type='button' style={buttonStyle.pickupPackage} onClick={this.pickupPackage}>Pickup Package</button>
-            <button type='button' style={buttonStyle.dropoffPackage} onClick={this.dropoffPackage}>Dropoff Package</button>
-            <button type='button' style={buttonStyle.eatLeft} onClick={this.eatLeft}>Eat Left</button>
-            <button type='button' style={buttonStyle.eatRight} onClick={this.eatRight}>Eat Right</button>
-            <div>
-              <button type='button' style={buttonStyle.forward} onClick={this.forward}>D</button>
-              <button type='button' style={buttonStyle.reverse} onClick={this.reverse}>R</button>
+            <div className='Buttons'>
+              <button type='button' style={buttonStyle.pickupPackage} onClick={this.pickupPackage}>Pickup Package</button>
+              <button type='button' style={buttonStyle.dropoffPackage} onClick={this.dropoffPackage}>Dropoff Package</button>
+              <button type='button' style={buttonStyle.eatLeft} onClick={this.eatLeft}>Eat Left</button>
+              <button type='button' style={buttonStyle.eatRight} onClick={this.eatRight}>Eat Right</button>
+              <div>
+                <button type='button' style={buttonStyle.forward} onClick={this.forward}>D</button>
+                <button type='button' style={buttonStyle.reverse} onClick={this.reverse}>R</button>
+              </div>
+            </div>
+            <div className='Map' style={mapStyle}>
+              <div />
             </div>
           </div>
           <div className='Wheel'>
             <div style={wheelStyle} />
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

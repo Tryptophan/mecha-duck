@@ -35,5 +35,13 @@ io.on('connection', client => {
     forward = data;
     client.broadcast.emit('forward', data);
   });
+  client.on('x', data => {
+    x = data;
+    client.broadcast.emit('x', data);
+  });
+  client.on('y', data => {
+    y = data;
+    client.broadcast.emit('y', data);
+  });
 });
 io.listen(8080);

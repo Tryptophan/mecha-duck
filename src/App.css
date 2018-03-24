@@ -9,17 +9,6 @@ html, body {
   height: 100%;
 }
 
-/* .Map {
-  float: left;
-  width: 50%;
-  height: 100vh;
-  background-image: url('map.png');
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-position-x: 0%;
-  background-position-y: 100%;
-} */
-
 .Controls {
   width: 100%;
   height: 100vh;
@@ -46,20 +35,46 @@ html, body {
   text-align: center;
 }
 
-.Actions button {
+.Buttons button {
   margin: 10px auto;
   height: 40px;
   display: block;
   width: 40%;
 }
 
-.Actions div button {
+.Buttons div button {
   display: inline-block;
   width: 15%;
 }
 
-.Actions div button:first-child {
+.Buttons div button:first-child {
   margin-right: 10%;
+}
+
+.Map {
+  width: 40%;
+  height: 40vh;
+  margin: 20px auto;
+  background-image: url('map.png');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-color: blue;
+  background-position-x: 0%;
+  background-position-y: 100%;
+  position: relative;
+}
+
+.Map div {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  background-color: red;
+  top: 45%;
+  left: 45%;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
 }
 
 .Wheel {

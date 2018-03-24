@@ -15,10 +15,12 @@ export default class Commander extends Component {
       dropoffPackage: false,
       forward: true,
       eatLeft: false,
-      eatRight: false
+      eatRight: false,
+      x: 0,
+      y: 100
     }
 
-    this.socket = io('http://localhost:8080');
+    this.socket = io('http://10.42.0.1:8080');
 
     this.socket.on('connect', () => {
       this.socket.on('speed', data => {
@@ -66,6 +68,20 @@ export default class Commander extends Component {
         console.log(data);
         this.setState({
           forward: data
+        });
+      });
+
+      this.socket.on('x', data => {
+        console.log(data);
+        this.setState({
+          x: data
+        });
+      });
+
+      this.socket.on('y', data => {
+        console.log(data);
+        this.setState({
+          y: data
         });
       });
     });
@@ -118,58 +134,121 @@ export default class Commander extends Component {
       }
     }
 
+    const mapStyle = {
+      backgroundPositionX: this.state.x,
+      backgroundPositionY: this.state.y
+    }
+
     return (
       <div className='Controls' style={bgStyle}>
         <div className='Speed'>
           <Slider
             orientation='vertical'
             value={this.state.speed}
-            onChange={this.handleSpeedChange}
           />
         </div>
         <div className='Actions'>
-          <button type='button' style={buttonStyle.pickupPackage} onClick={this.pickupPackage}>Pickup Package</button>
-          <button type='button' style={buttonStyle.dropoffPackage} onClick={this.dropoffPackage}>Dropoff Package</button>
-          <button type='button' style={buttonStyle.eatLeft} onClick={this.eatLeft}>Eat Left</button>
-          <button type='button' style={buttonStyle.eatRight} onClick={this.eatRight}>Eat Right</button>
-          <div>
-            <button type='button' style={buttonStyle.forward} onClick={this.forward}>D</button>
-            <button type='button' style={buttonStyle.reverse} onClick={this.reverse}>R</button>
+          <div className='Buttons'>
+            <button type='button' style={buttonStyle.pickupPackage} onClick={this.pickupPackage}>Pickup Package</button>
+            <button type='button' style={buttonStyle.dropoffPackage} onClick={this.dropoffPackage}>Dropoff Package</button>
+            <button type='button' style={buttonStyle.eatLeft} onClick={this.eatLeft}>Eat Left</button>
+            <button type='button' style={buttonStyle.eatRight} onClick={this.eatRight}>Eat Right</button>
+            <div>
+              <button type='button' style={buttonStyle.forward} onClick={this.forward}>D</button>
+              <button type='button' style={buttonStyle.reverse} onClick={this.reverse}>R</button>
+            </div>
+          </div>
+          <div className='Map' style={mapStyle}>
+            <div />
           </div>
         </div>
         <div className='Wheel'>
-          <div style={wheelStyle} onMouseDown={this.handleAngleChange} />
+          <div style={wheelStyle} />
         </div>
       </div>
     );
   }
 
-  handleSpeedChange = value => {
-    this.setState({
-      speed: value
-    });
+  componentDidMount() {
 
-    this.socket.emit('speed', value);
-  }
-
-  handleAngleChange = event => {
-
-    let mouseStartX = event.clientX;
-    let mouseStartY = event.clientY;
-
-    document.onmousemove = event => {
-      let x = -(mouseStartX - event.clientX);
-      let y = mouseStartY - event.clientY;
-      let deg = Math.atan2(x, y) * 180 / Math.PI;
-      this.setState({
-        angle: deg
-      });
-      this.socket.emit('angle', deg);
+    const KEY = {
+      W: 87,
+      S: 83,
+      A: 65,
+      D: 68,
+      LEFT: 37,
+      RIGHT: 39,
+      UP: 38,
+      DOWN: 40
     }
 
-    document.onmouseup = () => {
-      document.onmouseup = undefined;
-      document.onmousemove = undefined;
+    document.onkeydown = event => {
+      event.preventDefault();
+
+      if (event.keyCode === KEY.W) {
+        let speed = this.state.speed + 10;
+        this.setState({
+          speed: speed
+        });
+        this.socket.emit('speed', speed);
+      }
+
+      else if (event.keyCode === KEY.S) {
+        let speed = this.state.speed - 10;
+        this.setState({
+          speed: speed
+        });
+        this.socket.emit('speed', speed);
+      }
+
+      if (event.keyCode === KEY.A) {
+        let angle = this.state.angle - 10;
+        this.setState({
+          angle: angle
+        });
+        this.socket.emit('angle', angle);
+      }
+
+      else if (event.keyCode === KEY.D) {
+        let angle = this.state.angle + 10;
+        this.setState({
+          angle: angle
+        });
+        this.socket.emit('angle', angle);
+      }
+
+      if (event.keyCode === KEY.UP) {
+        let y = this.state.y + 10;
+        this.setState({
+          y: y
+        });
+        this.socket.emit('y', y);
+      }
+
+      if (event.keyCode === KEY.DOWN) {
+        let y = this.state.y - 10;
+        this.setState({
+          y: y
+        });
+        this.socket.emit('y', y);
+      }
+
+      if (event.keyCode === KEY.RIGHT) {
+        let x = this.state.x - 10;
+        this.setState({
+          x: x
+        });
+        this.socket.emit('x', x);
+      }
+
+      if (event.keyCode === KEY.LEFT) {
+        let x = this.state.x + 10;
+        this.setState({
+          x: x
+        });
+        this.socket.emit('x', x);
+      }
+
     }
   }
 
