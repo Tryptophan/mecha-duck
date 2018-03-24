@@ -17,6 +17,11 @@ export default class Commander extends Component {
   }
 
   render() {
+
+    const wheelStyle = {
+      transform: 'rotate(' + this.state.angle + 'deg)'
+    }
+
     return (
       <div className='Controls'>
           <div className='Speed'>
@@ -27,7 +32,7 @@ export default class Commander extends Component {
             />
           </div>
           <div className='Wheel'>
-            <div />
+            <div style={wheelStyle} onMouseDown={this.handleAngleChange} />
           </div>
         </div>
     );
@@ -40,10 +45,29 @@ export default class Commander extends Component {
     this.socket.emit('speed', value);
   }
 
-  handleWheelChange = event => {
-    this.setState({
-      angle: event.target.value
-    });
-    this.socket.emit('angle', event.target.value);
+  handleAngleChange = event => {
+
+    let mouseStartX = event.clientX;
+    let mouseStartY = event.clientY;
+
+    document.onmousemove = event => {
+      let x = -(mouseStartX - event.clientX);
+      let y = mouseStartY - event.clientY;
+      let deg = Math.atan2(x, y) * 180 / Math.PI;
+      this.setState({
+        angle: deg
+      });
+    }
+    console.log(event);
+    // this.setState({
+    //   angle: event.target.value
+    // });
+    // this.socket.emit('angle', event.target.value);
+
+    document.onmouseup = () => {
+      document.onmouseup = undefined;
+      document.onmousemove = undefined;
+    }
+    
   }
 }
