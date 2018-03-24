@@ -13,7 +13,7 @@ export default class Commander extends Component {
       angle: 0
     }
 
-    this.socket = io('http://10.42.0.1:8080');
+    this.socket = io('http://localhost:8080');
   }
 
   render() {
@@ -57,12 +57,8 @@ export default class Commander extends Component {
       this.setState({
         angle: deg
       });
+      this.socket.emit('angle', deg);
     }
-    console.log(event);
-    // this.setState({
-    //   angle: event.target.value
-    // });
-    // this.socket.emit('angle', event.target.value);
 
     document.onmouseup = () => {
       document.onmouseup = undefined;

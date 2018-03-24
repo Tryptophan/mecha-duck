@@ -12,7 +12,7 @@ export default class Driver extends Component {
       angle: 0
     }
 
-    this.socket = io('http://10.42.0.1:8080');
+    this.socket = io('http://localhost:8080');
 
     this.socket.on('connect', () => {
 
@@ -25,6 +25,7 @@ export default class Driver extends Component {
       });
 
       this.socket.on('angle', data => {
+        console.log(data);
         this.setState({
           angle: data
         });
@@ -33,6 +34,11 @@ export default class Driver extends Component {
   }
 
   render() {
+
+    const wheelStyle = {
+      transform: 'rotate(' + this.state.angle + 'deg)'
+    }
+
     return (
       <div>
         {/* <h1>speed: {this.state.speed}, angle: {this.state.angle}</h1> */}
@@ -46,7 +52,7 @@ export default class Driver extends Component {
             />
           </div>
           <div className='Wheel'>
-            <div />
+            <div style={wheelStyle} />
           </div>
         </div>
       </div>

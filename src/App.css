@@ -34,6 +34,8 @@ html, body {
 
 .Wheel div {
   height: 30vh;
+  width: 40%;
+  margin: 0 auto;
   background-image: url('wheel.png');
   background-size: contain;
   background-repeat: no-repeat;
