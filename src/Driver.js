@@ -174,7 +174,8 @@ export default class Driver extends Component {
             </div>
           </div>
           <div className='Wheel'>
-            <div style={wheelStyle} />
+            <div className='Gear' style={this.state.forward ? { visibility: 'hidden' } : { visibility: 'visible' }}>REVERSE</div>
+            <div className='Image' style={wheelStyle} />
           </div>
         </div>
       </div >
