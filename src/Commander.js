@@ -153,15 +153,16 @@ export default class Commander extends Component {
           <button type='button' style={buttonStyle.eatLeft} onClick={this.eatLeft}>Eat Left</button>
           <button type='button' style={buttonStyle.eatRight} onClick={this.eatRight}>Eat Right</button>
           <div>
-            <button type='button' style={buttonStyle.forward} onClick={this.forward}>D</button>
-            <button type='button' style={buttonStyle.reverse} onClick={this.reverse}>R</button>
+            <button type='button' style={buttonStyle.forward}>D</button>
+            <button type='button' style={buttonStyle.reverse}>R</button>
           </div>
         </div>
         <div className='Map' style={mapStyle}>
           <div />
         </div>
         <div className='Wheel'>
-          <div style={wheelStyle} />
+          <div className='Gear' style={this.state.forward ? {visibility: 'hidden'} : {visibility: 'visible'}}>REVERSE</div>
+          <div className='Image' style={wheelStyle} />
         </div>
       </div>
     );
@@ -178,7 +179,9 @@ export default class Commander extends Component {
       RIGHT: 39,
       UP: 38,
       DOWN: 40,
-      SPACE: 32
+      SPACE: 32,
+      R: 82,
+      F: 70
     }
 
     document.onkeydown = event => {
@@ -256,6 +259,14 @@ export default class Commander extends Component {
         this.socket.emit('x', x);
       }
 
+      if (event.keyCode === KEY.F) {
+        this.forward();
+      }
+
+      else if (event.keyCode === KEY.R) {
+        this.reverse();
+      }
+
     }
   }
 
@@ -291,14 +302,14 @@ export default class Commander extends Component {
     this.socket.emit('eatRight', !old);
   }
 
-  forward = event => {
+  forward = () => {
     this.setState({
       forward: true
     });
     this.socket.emit('forward', true);
   }
 
-  reverse = event => {
+  reverse = () => {
     this.setState({
       forward: false
     });

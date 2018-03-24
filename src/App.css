@@ -83,11 +83,20 @@ html, body {
   float: right;
   width: 25%;
   height: 100vh;
-  display: flex;
-  align-items: center;
+  text-align: center;
+  /* display: flex;
+  align-items: center; */
 }
 
-.Wheel div {
+.Wheel .Gear {
+  background-color: blue;
+  padding: 5px;
+  font-size: 24px;
+  display: inline-block;
+  margin-top: 40%;
+}
+
+.Wheel .Image {
   height: 30vh;
   width: 40%;
   margin: auto;
