@@ -38,7 +38,7 @@ export default class Commander extends Component {
     }
 
     const bgStyle = {}
-    
+
     if (this.state.speed >= 50) {
       bgStyle.backgroundColor = 'green';
     }
@@ -53,17 +53,17 @@ export default class Commander extends Component {
 
     return (
       <div className='Controls' style={bgStyle}>
-          <div className='Speed'>
-            <Slider
-              orientation='vertical'
-              value={this.state.speed}
-              onChange={this.handleSpeedChange}
-            />
-          </div>
-          <div className='Wheel'>
-            <div style={wheelStyle} onMouseDown={this.handleAngleChange} />
-          </div>
+        <div className='Speed'>
+          <Slider
+            orientation='vertical'
+            value={this.state.speed}
+            onChange={this.handleSpeedChange}
+          />
         </div>
+        <div className='Wheel'>
+          <div style={wheelStyle} onMouseDown={this.handleAngleChange} />
+        </div>
+      </div>
     );
   }
 
@@ -94,6 +94,6 @@ export default class Commander extends Component {
       document.onmouseup = undefined;
       document.onmousemove = undefined;
     }
-    
+
   }
 }

@@ -21,21 +21,36 @@ html, body {
 } */
 
 .Controls {
-  float: right;
-  width: 50%;
+  width: 100%;
   height: 100vh;
   background-color: red;
+  
 }
 
 .Speed {
-  height: 50vh;
-  padding: 20px;
+  float: left;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.Speed div {
+  margin: auto;
+}
+
+.Wheel {
+  float: right;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .Wheel div {
   height: 30vh;
   width: 40%;
-  margin: 0 auto;
+  margin: auto;
   background-image: url('wheel.png');
   background-size: contain;
   background-repeat: no-repeat;

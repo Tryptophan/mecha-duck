@@ -7,7 +7,6 @@ export default class Home extends Component {
       <div>
         <div><Link to='/driver' >I'm a driver!</Link></div>
         <div><Link to='/commander' >I'm a commander!</Link></div>
-        <div><Link to='/navigator' >I'm a navigator!</Link></div>
       </div>
     );
   }

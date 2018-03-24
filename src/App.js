@@ -5,7 +5,6 @@ import './App.css';
 import Home from './Home';
 import Driver from './Driver';
 import Commander from './Commander';
-import Navigator from './Navigator';
 
 class App extends Component {
   render() {
@@ -15,7 +14,6 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/driver' component={Driver} />
           <Route path='/commander' component={Commander} />
-          <Route path='/navigator' component={Navigator} />
         </Switch>
       </div>
     );

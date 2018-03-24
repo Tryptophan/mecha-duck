@@ -37,7 +37,7 @@ export default class Driver extends Component {
     }
 
     const bgStyle = {}
-    
+
     if (this.state.speed >= 50) {
       bgStyle.backgroundColor = 'green';
     }
@@ -55,11 +55,13 @@ export default class Driver extends Component {
         {/* <div className='Map'/> */}
         <div className='Controls' style={bgStyle}>
           <div className='Speed'>
-            <Slider
-              orientation='vertical'
-              value={this.state.speed}
-              onChange={this.handleChange}
-            />
+            <div>
+              <Slider
+                orientation='vertical'
+                value={this.state.speed}
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
           <div className='Wheel'>
             <div style={wheelStyle} />
