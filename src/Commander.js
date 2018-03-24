@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import wheel from './wheel.png';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css'
 
@@ -14,24 +13,31 @@ export default class Commander extends Component {
       angle: 0
     }
 
-    this.socket = io('http://localhost:8080');
+    this.socket = io('http://10.42.0.1:8080');
   }
 
   render() {
     return (
-      <div>
-        <input type='text' onChange={this.handleSpeedChange} value={this.state.speed} />
-        <input type='text' onChange={this.handleWheelChange} value={this.state.angle} />
-      </div>
+      <div className='Controls'>
+          <div className='Speed'>
+            <Slider
+              orientation='vertical'
+              value={this.state.speed}
+              onChange={this.handleSpeedChange}
+            />
+          </div>
+          <div className='Wheel'>
+            <div />
+          </div>
+        </div>
     );
   }
 
-  handleSpeedChange = event => {
+  handleSpeedChange = value => {
     this.setState({
-      speed: event.target.value
+      speed: value
     });
-    // console.log(event.target.value);
-    this.socket.emit('speed', event.target.value);
+    this.socket.emit('speed', value);
   }
 
   handleWheelChange = event => {

@@ -9,7 +9,7 @@ html, body {
   height: 100%;
 }
 
-.Map {
+/* .Map {
   float: left;
   width: 50%;
   height: 100vh;
@@ -18,7 +18,7 @@ html, body {
   background-repeat: no-repeat;
   background-position-x: 0%;
   background-position-y: 100%;
-}
+} */
 
 .Controls {
   float: right;
@@ -32,18 +32,11 @@ html, body {
   padding: 20px;
 }
 
-.Wheel {
-  height: 50vh;
-  position: relative;
-}
-
-.Wheel img {
-  width: 30%;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  animation: wheel-spin infinite 20s linear;
+.Wheel div {
+  height: 30vh;
+  background-image: url('wheel.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
 }
