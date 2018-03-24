@@ -94,9 +94,9 @@ export default class Driver extends Component {
       transform: 'rotate(' + this.state.angle + 'deg)'
     }
 
-    if (this.state.speed >= 75 && this.state.speed <= 100 && !this.audio.playing) {
+    if (this.state.speed === 100 && !this.audio.playing) {
       this.audio.play();
-    } else if (this.state.speed < 75) {
+    } else if (this.state.speed < 100) {
       this.audio.pause();
     }
 
