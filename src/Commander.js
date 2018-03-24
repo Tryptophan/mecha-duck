@@ -22,8 +22,22 @@ export default class Commander extends Component {
       transform: 'rotate(' + this.state.angle + 'deg)'
     }
 
+    const bgStyle = {}
+    
+    if (this.state.speed >= 50) {
+      bgStyle.backgroundColor = 'green';
+    }
+
+    else if (this.state.speed < 50 && this.state.speed > 0) {
+      bgStyle.backgroundColor = 'yellow';
+    }
+
+    else {
+      bgStyle.backgroundColor = 'red';
+    }
+
     return (
-      <div className='Controls'>
+      <div className='Controls' style={bgStyle}>
           <div className='Speed'>
             <Slider
               orientation='vertical'
@@ -42,6 +56,7 @@ export default class Commander extends Component {
     this.setState({
       speed: value
     });
+
     this.socket.emit('speed', value);
   }
 
