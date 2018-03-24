@@ -2,26 +2,42 @@ import React, { Component } from 'react';
 import wheel from './wheel.png';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css'
+import io from 'socket.io-client'
 
 export default class Driver extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      value: 0
+      speed: 0,
+      angle: 0
     }
-  }
 
-  handleChange = value => {
-    this.setState({
-      value: value
+    this.socket = io('http://localhost:8080');
+
+    this.socket.on('connect', () => {
+
+      this.socket.emit('driver', this.socket.id);
+
+      this.socket.on('speed', data => {
+        this.setState({
+          speed: data
+        });
+      });
+
+      this.socket.on('angle', data => {
+        this.setState({
+          angle: data
+        });
+      });
     });
   }
 
   render() {
     return (
       <div>
-        <div className='Map'/>
+        <h1>speed: {this.state.speed}, angle: {this.state.angle}</h1>
+        {/* <div className='Map'/>
         <div className='Controls'>
           <div className='Speed'>
             <Slider
@@ -33,7 +49,7 @@ export default class Driver extends Component {
           <div className='Wheel'>
             <img src={wheel} />
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -15,8 +15,6 @@ export default class Commander extends Component {
     }
 
     this.socket = io('http://localhost:8080');
-
-    console.log(this.socket);
   }
 
   render() {
