@@ -4,6 +4,8 @@ var speed, angle = 0;
 
 var pickupPackage, dropoffPackage, eatLeft, eatRight = false;
 var forward = true;
+var x = 0;
+var y = 100;
 
 io.on('connection', client => {
 

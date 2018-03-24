@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css'
 import io from 'socket.io-client'
+import gas from './gas.mp3';
 
 export default class Driver extends Component {
 
@@ -19,7 +20,9 @@ export default class Driver extends Component {
       y: 100
     }
 
-    this.socket = io('http://10.42.0.1:8080');
+    this.audio = new Audio(gas);
+
+    this.socket = io('http://localhost:8080');
 
     this.socket.on('connect', () => {
       this.socket.on('speed', data => {
@@ -91,6 +94,12 @@ export default class Driver extends Component {
       transform: 'rotate(' + this.state.angle + 'deg)'
     }
 
+    if (this.state.speed >= 75 && this.state.speed <= 100 && !this.audio.playing) {
+      this.audio.play();
+    } else if (this.state.speed < 75) {
+      this.audio.pause();
+    }
+
     const bgStyle = {}
 
     if (this.state.speed >= 50) {
@@ -139,7 +148,6 @@ export default class Driver extends Component {
 
     return (
       <div>
-        {/* <div className='Map'/> */}
         <div className='Controls' style={bgStyle}>
           <div className='Speed'>
             <div>

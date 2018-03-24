@@ -20,7 +20,7 @@ export default class Commander extends Component {
       y: 100
     }
 
-    this.socket = io('http://10.42.0.1:8080');
+    this.socket = io('http://localhost:8080');
 
     this.socket.on('connect', () => {
       this.socket.on('speed', data => {
