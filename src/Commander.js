@@ -147,20 +147,18 @@ export default class Commander extends Component {
             value={this.state.speed}
           />
         </div>
-        <div className='Actions'>
-          <div className='Buttons'>
-            <button type='button' style={buttonStyle.pickupPackage} onClick={this.pickupPackage}>Pickup Package</button>
-            <button type='button' style={buttonStyle.dropoffPackage} onClick={this.dropoffPackage}>Dropoff Package</button>
-            <button type='button' style={buttonStyle.eatLeft} onClick={this.eatLeft}>Eat Left</button>
-            <button type='button' style={buttonStyle.eatRight} onClick={this.eatRight}>Eat Right</button>
-            <div>
-              <button type='button' style={buttonStyle.forward} onClick={this.forward}>D</button>
-              <button type='button' style={buttonStyle.reverse} onClick={this.reverse}>R</button>
-            </div>
+        <div className='Buttons'>
+          <button type='button' style={buttonStyle.pickupPackage} onClick={this.pickupPackage}>Pickup Package</button>
+          <button type='button' style={buttonStyle.dropoffPackage} onClick={this.dropoffPackage}>Dropoff Package</button>
+          <button type='button' style={buttonStyle.eatLeft} onClick={this.eatLeft}>Eat Left</button>
+          <button type='button' style={buttonStyle.eatRight} onClick={this.eatRight}>Eat Right</button>
+          <div>
+            <button type='button' style={buttonStyle.forward} onClick={this.forward}>D</button>
+            <button type='button' style={buttonStyle.reverse} onClick={this.reverse}>R</button>
           </div>
-          <div className='Map' style={mapStyle}>
-            <div />
-          </div>
+        </div>
+        <div className='Map' style={mapStyle}>
+          <div />
         </div>
         <div className='Wheel'>
           <div style={wheelStyle} />

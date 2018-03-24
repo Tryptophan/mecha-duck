@@ -18,7 +18,7 @@ html, body {
 
 .Speed {
   float: left;
-  width: 33%;
+  width: 25%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -28,11 +28,12 @@ html, body {
   margin: auto;
 }
 
-.Actions {
+.Buttons {
   float: left;
-  width: 33%;
-  height: 100vh;
+  margin-top: 10%;
   text-align: center;
+  width: 25%;
+  display: inline-block;
 }
 
 .Buttons button {
@@ -52,9 +53,10 @@ html, body {
 }
 
 .Map {
-  width: 40%;
-  height: 40vh;
-  margin: 20px auto;
+  width: 25%;
+  height: 50vh;
+  float: left;
+  margin-top: 10%;
   background-image: url('map.png');
   background-size: auto;
   background-repeat: no-repeat;
@@ -79,7 +81,7 @@ html, body {
 
 .Wheel {
   float: right;
-  width: 33%;
+  width: 25%;
   height: 100vh;
   display: flex;
   align-items: center;
