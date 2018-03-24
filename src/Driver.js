@@ -22,7 +22,7 @@ export default class Driver extends Component {
 
     this.audio = new Audio(gas);
 
-    this.socket = io('http://localhost:8080');
+    this.socket = io('http://' + window.location.hostname + ':8080');
 
     this.socket.on('connect', () => {
       this.socket.on('speed', data => {
